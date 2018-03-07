@@ -231,5 +231,3 @@ private void deletePhone() {
     // ......
 }
 ```
-
-[查看案例源代码](https://github.com/mengjingbo/RoomSample)
