@@ -14,6 +14,7 @@ import com.sample.room.bean.PhoneBean;
 import com.sample.room.db.PhoneDatabase;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void insertPhone(String mName, String mPhone) {
         List<PhoneBean> mPhones = new ArrayList<>();
-        mPhones.add(new PhoneBean(mPhone, mName));
+        mPhones.add(new PhoneBean(mPhone, mName, new Date()));
         PhoneDatabase.getDefault(getApplicationContext()).getPhoneDao().insertAll(mPhones);
         mNameEdit.setText("");
         mPhoneEdit.setText("");

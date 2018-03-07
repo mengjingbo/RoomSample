@@ -9,7 +9,10 @@ import android.widget.TextView;
 import com.sample.room.R;
 import com.sample.room.bean.PhoneBean;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * 作者：蒙景博
@@ -33,7 +36,7 @@ public class PhoneListAdapter extends RecyclerView.Adapter<PhoneListAdapter.View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        holder.mPhoneTx.setText(mPhoneList.get(position).getName() + ":" + mPhoneList.get(position).getPhone());
+        holder.mPhoneTx.setText(getFormatContent(mPhoneList.get(position).getName(), mPhoneList.get(position).getPhone(), mPhoneList.get(position).getDate()));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,6 +54,21 @@ public class PhoneListAdapter extends RecyclerView.Adapter<PhoneListAdapter.View
 
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.mListener = listener;
+    }
+
+    private String getFormatContent(String name, String phone, Date date) {
+        StringBuilder mBuilder = new StringBuilder();
+        mBuilder.append("昵称:");
+        mBuilder.append(name);
+        mBuilder.append("\n手机:");
+        mBuilder.append(phone);
+        mBuilder.append("\n日期:");
+        mBuilder.append(getFormatDate(date));
+        return mBuilder.toString();
+    }
+
+    private String getFormatDate(Date date) {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.CHINA).format(date);
     }
 
     public interface OnItemClickListener {

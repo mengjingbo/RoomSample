@@ -3,6 +3,7 @@ package com.sample.room.db;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
 import com.sample.room.bean.PhoneBean;
@@ -14,6 +15,7 @@ import com.sample.room.dao.PhoneDao;
  * 描述：
  */
 @Database(entities = {PhoneBean.class}, version = 1, exportSchema = false)
+@TypeConverters({ConversionFactory.class})
 public abstract class PhoneDatabase extends RoomDatabase {
 
     public static PhoneDatabase getDefault(Context context) {

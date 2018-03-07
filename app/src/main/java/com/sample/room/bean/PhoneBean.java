@@ -8,6 +8,10 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 /**
  * 作者：蒙景博
  * 时间：2017/11/16
@@ -26,9 +30,13 @@ public class PhoneBean implements Parcelable {
     @ColumnInfo(name = "NAME")
     private String name;
 
-    public PhoneBean(String phone, String name) {
+    @ColumnInfo(name = "DATE")
+    private Date date;
+
+    public PhoneBean(String phone, String name, Date date) {
         this.phone = phone;
         this.name = name;
+        this.date = date;
     }
 
     public int getId() {
@@ -55,6 +63,14 @@ public class PhoneBean implements Parcelable {
         this.name = name;
     }
 
+    public Date getDate(){
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -65,12 +81,15 @@ public class PhoneBean implements Parcelable {
         dest.writeInt(this.id);
         dest.writeString(this.phone);
         dest.writeString(this.name);
+        dest.writeLong(this.date != null ? this.date.getTime() : -1);
     }
 
     protected PhoneBean(Parcel in) {
         this.id = in.readInt();
         this.phone = in.readString();
         this.name = in.readString();
+        long tmpDate = in.readLong();
+        this.date = tmpDate == -1 ? null : new Date(tmpDate);
     }
 
     public static final Parcelable.Creator<PhoneBean> CREATOR = new Parcelable.Creator<PhoneBean>() {

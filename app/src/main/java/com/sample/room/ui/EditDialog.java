@@ -10,6 +10,8 @@ import com.sample.room.R;
 import com.sample.room.bean.PhoneBean;
 import com.sample.room.db.PhoneDatabase;
 
+import java.util.Date;
+
 /**
  * 作者：蒙景博
  * 时间：2018/3/6
@@ -66,6 +68,7 @@ public class EditDialog extends BaseDialog implements View.OnClickListener {
     private void updatePhone(String name, String phone) {
         mPhoneBean.setName(name);
         mPhoneBean.setPhone(phone);
+        mPhoneBean.setDate(new Date());
         PhoneDatabase.getDefault(getActivity().getApplicationContext()).getPhoneDao().update(mPhoneBean);
         dismiss();
         if (mListener != null) {

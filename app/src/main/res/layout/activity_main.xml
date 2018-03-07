@@ -5,12 +5,6 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="提示：如果修改数据库字段时请修改数据库表名称或者重新安装APP，否则数据结构与表不一致，会抛出异常。"
-        android:textSize="10sp" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
