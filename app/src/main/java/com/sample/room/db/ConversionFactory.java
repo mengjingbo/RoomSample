@@ -5,7 +5,7 @@ import android.arch.persistence.room.TypeConverter;
 import java.util.Date;
 
 /**
- * 作者：蒙景博
+ * 作者：秦川小将
  * 时间：2018/3/7
  * 描述：
  */

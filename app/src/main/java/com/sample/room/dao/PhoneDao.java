@@ -12,8 +12,8 @@ import com.sample.room.bean.PhoneBean;
 import java.util.List;
 
 /**
- * 作者：蒙景博
- * 时间：2017/11/16
+ * 作者：秦川小将
+ * 时间：2018/3/6
  * 描述：
  */
 @Dao

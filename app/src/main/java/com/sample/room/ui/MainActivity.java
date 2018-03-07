@@ -17,7 +17,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
+/**
+ * 作者：秦川小将
+ * 时间：2018/3/6
+ * 描述：
+ */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText mNameEdit, mPhoneEdit;
