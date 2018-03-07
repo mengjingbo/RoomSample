@@ -36,7 +36,7 @@ dependencies {
 }
 ```
 
-### 创建Entity
+### 定义Entity
 
 当一个类用 **@Entity** 注解并且被 **@Database** 注解中的 **entities** 属性所引用，Room就会在数据库中为这个被 **@Entity** 注解的类创建一张表。
 
@@ -62,9 +62,13 @@ public class PhoneBean implements Parcelable {
     @ColumnInfo(name = "NAME")
     private String name;
 
-    public PhoneBean(String phone, String name) {
+    @ColumnInfo(name = "DATE")
+    private Date date;
+
+    public PhoneBean(String phone, String name, Date date) {
         this.phone = phone;
         this.name = name;
+        this.date = date;
     }
 
     public int getId() {
@@ -91,6 +95,14 @@ public class PhoneBean implements Parcelable {
         this.name = name;
     }
 
+    public Date getDate(){
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -101,12 +113,15 @@ public class PhoneBean implements Parcelable {
         dest.writeInt(this.id);
         dest.writeString(this.phone);
         dest.writeString(this.name);
+        dest.writeLong(this.date != null ? this.date.getTime() : -1);
     }
 
     protected PhoneBean(Parcel in) {
         this.id = in.readInt();
         this.phone = in.readString();
         this.name = in.readString();
+        long tmpDate = in.readLong();
+        this.date = tmpDate == -1 ? null : new Date(tmpDate);
     }
 
     public static final Parcelable.Creator<PhoneBean> CREATOR = new Parcelable.Creator<PhoneBean>() {
@@ -123,7 +138,27 @@ public class PhoneBean implements Parcelable {
 }
 ```
 
-### 创建Dao
+### 转换
+##### TypeConverter
+
+使用@TypeConverter注解定义转换的方法，如下，将Date类型的数据转换成Long类型来存储。
+
+```Java
+public class ConversionFactory {
+
+    @TypeConverter
+    public static Long fromDateToLong(Date date) {
+        return date == null ? null : date.getTime();
+    }
+
+    @TypeConverter
+    public static Date fromLongToDate(Long value) {
+        return value == null ? null : new Date(value);
+    }
+}
+```
+
+### 定义Dao
 
 Dao组件定义一系列的增删改查操作。其中 **Update** 和 **Detele** 操作是根据定义的主键进行。
 
@@ -177,6 +212,7 @@ public interface PhoneDao {
 
 ```Java
 @Database(entities = {PhoneBean.class}, version = 1, exportSchema = false)
+@TypeConverters({ConversionFactory.class})
 public abstract class PhoneDatabase extends RoomDatabase {
 
     public static PhoneDatabase getDefault(Context context) {
