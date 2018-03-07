@@ -158,11 +158,11 @@ public class ConversionFactory {
 }
 ```
 
-如图，示例中将Date属性转换为Long类型存储到数据库
+如图，示例中将Date属性值转换为Long类型存储到数据库
 
 ![Date类型转换为Long类型存储到数据库](https://github.com/mengjingbo/RoomSample/blob/master/image/1.png?raw=true)
 
-读取到数据库的Date属性值，再将Date转换为字符串显示
+读取到数据库的Date属性值，再将Date属性值转换为字符串显示
 
 ![Long类型转换为Date类型展示](https://github.com/mengjingbo/RoomSample/blob/master/image/2.png?raw=true)
 
