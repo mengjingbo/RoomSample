@@ -158,6 +158,14 @@ public class ConversionFactory {
 }
 ```
 
+如图，示例中将Date属性转换为Long类型存储到数据库
+
+![Date类型转换为Long类型存储到数据库](https://github.com/mengjingbo/RoomSample/blob/master/image/1.png?raw=true)
+
+读取到数据库的Date属性值，再将Date转换为字符串显示
+
+![Long类型转换为Date类型展示](https://github.com/mengjingbo/RoomSample/blob/master/image/2.png?raw=true)
+
 ### 定义Dao
 
 Dao组件定义一系列的增删改查操作。其中 **Update** 和 **Detele** 操作是根据定义的主键进行。
