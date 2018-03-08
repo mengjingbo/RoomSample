@@ -1,7 +1,7 @@
 ## Android架构组件Room介绍与使用
 ### 关于Room
 
-Room是Google官方提供个的数据库ORM框架，使用起来非常方便。Room在SQLite上提供了一个抽象层，以便在利用SQLite的全部功能的同时能更加流畅的访问数据库。
+Room是Google官方提供的数据库ORM框架，使用起来非常方便。Room在SQLite上提供了一个抽象层，以便在利用SQLite的全部功能的同时能更加流畅的访问数据库。
 
 Room中三个主要组件：
 
